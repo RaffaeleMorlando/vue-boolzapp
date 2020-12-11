@@ -11,7 +11,87 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
 </head>
 <body>
-    
+
+    <div id="app">
+        <div id="left-section">
+            <div id="user-bar">
+                <div class="wrapper-user-avatar">
+                    <img src="img/Avatars Set Flat Style-50.png" alt="">
+                    <span>User Name</span>
+                </div>
+                <div class="wrapper-user-icons">
+                    <ul>
+                    <li>
+                        <i class="fas fa-circle-notch"></i>
+                    </li>
+                    <li>
+                        <i class="fas fa-comment-alt"></i>
+                    </li>
+                    <li>
+                        <i class="fas fa-ellipsis-v"></i>
+                    </li>
+                </ul>
+                </div>
+            </div>
+            <div id="set-notification">
+                <div class="icon-notification">
+                    <div class="wrapper-icon-notification">
+                        <i class="fas fa-bell-slash"></i>
+                    </div>
+                </div>
+                <div class="set-notification-alert">
+                    <span>Receive notifications of a new message</span>
+                    <a href="#">Enable desktop notifications</a>
+                </div>
+            </div>
+            <div id="search-box-wrapper">
+                <button><i class="fas fa-search"></i></button>
+                <input type="text" placeholder="Search">
+            </div>
+            <div id="chats-box">
+                <ul>
+                    <li>
+                        <div class="avatar-contact-wrapper">
+                            <div class="wrapper-icon-contact">
+                                <img src="img/Avatars Set Flat Style-01.png" alt="">
+                            </div>
+                        </div>
+                        <div class="contact-box-info">
+                            <span>Name</span>
+                            <p>Lorem ipsum, dolor sit..</p>
+                        </div>
+                        <div id="time-wrapper">
+                            <span>11/12/2020</span>
+                            <span>16:15:22</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="right-section">
+            <div id="contact-message-bar">
+                <!-- <div class="wrapper-contact-avatar">
+                    <img src="img/Avatars Set Flat Style-50.png" alt="">
+                    <span>User Name</span>
+                </div>
+                <div class="wrapper-contact-icons">
+                    <ul>
+                        <li>
+                            <i class="fas fa-circle-notch"></i>
+                        </li>
+                        <li>
+                            <i class="fas fa-comment-alt"></i>
+                        </li>
+                        <li>
+                            <i class="fas fa-ellipsis-v"></i>
+                        </li>
+                    </ul>
+                </div> -->
+            </div>
+        </div>
+    </div>
+
     <script src="js/app.js"></script>
 </body>
 </html>

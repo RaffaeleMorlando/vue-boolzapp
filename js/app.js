@@ -86,9 +86,16 @@ const app = new Vue(
             }
           ],
         },
-      ]
-      
+      ],
+      currentContact: ''
+    },
+    methods: {
+      getCurrent: function(contact) {
+        this.currentContact = contact.messages
+        console.log(this.currentContact);
+      }
     }
   }
 );
+
 

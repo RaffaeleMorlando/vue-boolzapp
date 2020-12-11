@@ -26,7 +26,7 @@ img {
 
 #app {
     display: flex;
-    width: 80%;
+    width: 90%;
 
     height: 90vh;
     margin: 5rem auto;
@@ -236,7 +236,7 @@ img {
 #chat {
     width: 100%;
     height: calc(90vh - 9rem);
-    background-color: #DFD7CF;
+    background-color: hsl(30, 20%, 84%);
 }
 
 #chat-background {
@@ -246,9 +246,32 @@ img {
     background-position: center;
     background-size: contain;
     background-repeat: repeat;
-    opacity: 0.2;
+    background-color: rgba(244, 211, 170, 0.8);
     overflow-y: scroll;
 }
+.message-wrapper{
+    width: 90%;
+    height: 50px;
+    margin: 2rem auto;
+}
+.message-background {
+    background-color: #DBF8C6;
+    display: inline-block;
+}
+.message {
+    display: inline-block;
+    padding: 6px 7px 8px 9px;
+    border-radius: 7.5px;
+}
+.
+/* .date-message {
+    display: inline-block;
+    position: relative;
+}
+.date-message > span {
+    position: absolute;
+    border: 1px solid red;
+} */
 
 #input-chat-box {
     display: flex;
@@ -280,12 +303,4 @@ img {
     padding: 1rem;
     border: none;
     border-radius: 5px;
-}
-
-.test {
-    width: 100%;
-    height: 200px;
-    background-color: red;
-    border: 1px solid red;
-    margin-bottom: 2rem;
 }

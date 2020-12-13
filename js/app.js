@@ -5,7 +5,7 @@ const app = new Vue(
       contacts: [
         {
           name: 'Michele',
-          avatar: '_1',
+          avatar: 'img/Avatars Set Flat Style-07.png',
           visible: true,
           messages: [
             {
@@ -27,7 +27,7 @@ const app = new Vue(
         },
         {
           name: 'Fabio',
-          avatar: '_2',
+          avatar: 'img/Avatars Set Flat Style-19.png',
           visible: true,
           messages: [
             {
@@ -49,7 +49,7 @@ const app = new Vue(
         },
         {
           name: 'Samuele',
-          avatar: '_3',
+          avatar: 'img/Avatars Set Flat Style-38.png',
           visible: true,
           messages: [
             {
@@ -71,7 +71,7 @@ const app = new Vue(
         },
         {
           name: 'Luisa',
-          avatar: '_4',
+          avatar: 'img/Avatars Set Flat Style-43.png',
           visible: true,
           messages: [
             {
@@ -87,15 +87,29 @@ const app = new Vue(
           ],
         },
       ],
-      currentContact: ''
+      currentMessage: '',
+      currentContact: '',
+      index: 0,
+      selected : 0
     },
+    computed: {
+      filtered: function() {
+        if(index == null) {
+          return contacts = []
+        } else {
+          return contacts
+        }
+      }
+    }
+    ,
     methods: {
-      getCurrent: function(contact) {
-        this.currentContact = contact.messages
-        console.log(this.currentContact);
+      getCurrent: function(contact,index) {
+        this.index = index
+        this.currentContact = contact;
+        this.currentMessage = contact.messages
+        this.selected = index;
       }
     }
   }
 );
-
 

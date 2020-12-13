@@ -19,7 +19,7 @@
             <div id="user-bar">
                 <div class="wrapper-user-avatar">
                     <img src="img/Avatars Set Flat Style-50.png" alt="">
-                    <span>User Name</span>
+                    <span>Raffaele</span>
                 </div>
                 <div class="wrapper-user-icons">
                     <ul>
@@ -55,19 +55,18 @@
 
             <div id="chats-box">
                 <ul>
-                    <li @click="getCurrent(contact)" v-for="(contact,index) in contacts">
+                    <li @click="getCurrent(contact,index)"  :class="{active : selected === index}" v-for="(contact,index) in contacts">
                         <div class="avatar-contact-wrapper">
                             <div class="wrapper-icon-contact">
-                                <img src="img/Avatars Set Flat Style-01.png" alt="">
+                                <img :src="contact.avatar" alt="">
                             </div>
                         </div>
                         <div class="contact-box-info">
                             <span>{{contact.name}}</span>
-                            <p>Lorem ipsum dolor sit amet.</p>
+                            <p>{{contact.messages[contact.messages.length - 1].text}}</p>
                         </div>
                         <div id="time-wrapper">
-                            <span>11/12/2020</span>
-                            <span>16:15:22</span>
+                            <span>{{contact.messages[contact.messages.length - 1].date}}</span>
                         </div>
                     </li>
                 </ul>
@@ -77,12 +76,12 @@
 
         <div id="right-section">
 
-            <div id="contact-message-bar">
+            <div  id="contact-message-bar">
                 <div class="wrapper-contact-avatar">
-                    <img src="img/Avatars Set Flat Style-02.png" alt="">
+                    <img :src="currentContact.avatar"  alt="">
                     <div class="contact-info">
-                        <span>User Name</span>
-                        <span>Last seen today at 10:13</span>
+                        <span>{{currentContact.name}}</span>
+                        <span>Last seen {{contacts[index].messages[contacts[index].messages.length - 1].date}}</span>
                     </div>
                 </div>
                 <div class="wrapper-contact-icons">
@@ -102,20 +101,17 @@
 
             <div id="chat">
                 <div id="chat-background">
-                    <div v-for="message in currentContact" class="message-wrapper" :class="">
-                        <div class="message-background">
-                        	<div class="message">
-                        		<span>{{message.text}}</span>
-                        	</div>
-                        	<!-- <div class="date-message">
-                        	    <span>{{message.date}}</span>
-                        	</div> -->
+                    <div v-for="message in currentMessage" class="wrapper-message">
+                        <div :class="{recivedMessage : message.status == 'received', sentMessage : message.status == 'sent'}">
+                            <span id="tail"></span>
+                            <p>{{message.text}}</p>
+                            <p id="date-message">{{message.date}}</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div id="input-chat-box">
+            <div id="input-box">
                 <div id="wrapper-emoticon">
                     <i class="far fa-laugh"></i>
                 </div>

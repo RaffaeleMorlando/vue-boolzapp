@@ -50,12 +50,12 @@
 
             <div id="search-box-wrapper">
                 <button><i class="fas fa-search"></i></button>
-                <input type="text" placeholder="Search">
+                <input v-model="chat" type="text" placeholder="Search">
             </div>
 
             <div id="chats-box">
                 <ul>
-                    <li @click="getCurrent(contact,index)"  :class="{active : selected === index}" v-for="(contact,index) in contacts">
+                    <li @click="getCurrent(contact,index)"  :class="{active : selected === index}" v-for="(contact,index) in filteredChat">
                         <div class="avatar-contact-wrapper">
                             <div class="wrapper-icon-contact">
                                 <img :src="contact.avatar" alt="">
@@ -116,7 +116,7 @@
                     <i class="far fa-laugh"></i>
                 </div>
                 <div id="message-bar-wrapper">
-                    <input type="text" placeholder="Type a message">
+                    <input v-on:keyup.enter="sendMessage" v-model="newMessage" type="text" placeholder="Type a message">
                 </div>
                 <div id="wrapper-microphone">
                     <i class="fas fa-microphone"></i>

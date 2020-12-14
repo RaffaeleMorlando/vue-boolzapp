@@ -18,19 +18,21 @@
 body{
     background: -webkit-linear-gradient(top, #00BFA5, #00BFA5 20%,#D6DBD8 20%, #D1DADB);
     height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 img {
-    max-width: 2.5rem;
+    max-width: 3rem;
 }
 
 #app {
     display: flex;
     width: 95%;
     height: 90vh;
-    margin: 5rem auto;
+    margin: auto;
     background-color: var(--white);
-
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 /* -----left section------- */
@@ -55,6 +57,9 @@ img {
 }
 .wrapper-user-avatar img {
     margin-right: 0.5rem;
+    padding: 0.3125rem;
+    border-radius: 50%;
+    background-color: var(--white);
 }
 
 .wrapper-user-icons {
@@ -169,6 +174,10 @@ img {
     width: 60px;
     height: 60px;
 }
+.wrapper-icon-contact  img {
+    max-width: 2.5rem;
+}
+
 #chats-box .contact-box-info {
     width: 50%;
 }
@@ -212,6 +221,9 @@ img {
 }
 .wrapper-contact-avatar img {
     margin-right: 0.5rem;
+    background-color: var(--white);
+    padding: 0.3125rem;
+    border-radius: 50%;
 }
 .contact-info > span {
     display: block;
@@ -249,7 +261,7 @@ img {
     background-position: center;
     background-size: contain;
     background-repeat: repeat;
-    background-color: rgba(244, 211, 170, 0.8);
+    background-color: #E5DDD5;
     overflow-y: scroll;
     padding: 1rem;
     opacity: ;

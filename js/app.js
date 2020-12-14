@@ -90,26 +90,68 @@ const app = new Vue(
       currentMessage: '',
       currentContact: '',
       index: 0,
-      selected : 0
+      selected : 0,
+      newMessage: '',
+      chat: ''
+
     },
     computed: {
-      filtered: function() {
-        if(index == null) {
-          return contacts = []
+      filteredChat() {
+        if(this.chat.length == 0) {
+          return this.contacts;
         } else {
-          return contacts
+          return this.contacts.filter(
+            (element) => {
+              return element.name.toLowerCase().includes(this.chat.toLowerCase());
+          });
         }
       }
-    }
-    ,
+    },
     methods: {
       getCurrent: function(contact,index) {
         this.index = index
         this.currentContact = contact;
         this.currentMessage = contact.messages
         this.selected = index;
+      },sendMessage : function() {
+
+        const date = new Date();
+        const h = date.getHours();
+        const m = date.getMinutes();
+        const s = date.getSeconds();
+
+        const currentTime = `${h}:${m}:${s}`;
+
+        this.currentContact.messages.push({date: currentTime,text: this.newMessage, status: 'sent'});
+        this.newMessage = '';
+
+        const defaultMessages = [
+          'Ok', 
+          'Ciao', 
+          'Come stai?', 
+          'Andiamo?' , 
+          'Ci sto!',
+          'Bene, anche io',
+          'Aperitivo?',
+          `Wow! E' una notizia fantastica`,
+          'Ottima idea',
+          'Purtroppo, non ci sono',
+          'Buon Natale!',
+          'Sei speciale',
+          'Ho da fare ,oggi! Andiamo un altro giorno',
+          '...'
+        ];
+
+        const randomNumber = Math.floor(Math.random() * defaultMessages.length);
+        const randomNumberReply = Math.floor(Math.random() * 10000);
+
+        const autoMessage = setTimeout(
+          () => {
+            this.currentContact.messages.push({date: currentTime,text:defaultMessages[randomNumber],status : 'received'});
+            clearTimeout(this.autoMessage);
+          }
+        ,randomNumberReply)
       }
     }
   }
 );
-

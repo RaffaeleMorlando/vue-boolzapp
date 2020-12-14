@@ -201,6 +201,5 @@ const app = new Vue(
 );
 
 
-//[] problem to delete last chat message =>  'undefined'
+//[] problema cancellare ultimo messsaggio
 //[] se non chiudo l'option , resta aperto anche negli altri messaggi
-//[]

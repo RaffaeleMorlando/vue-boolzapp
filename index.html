@@ -101,10 +101,16 @@
 
             <div id="chat">
                 <div id="chat-background">
-                    <div v-for="message in currentMessage" class="wrapper-message">
-                        <div :class="{recivedMessage : message.status == 'received', sentMessage : message.status == 'sent'}">
-                            <span id="tail"></span>
+                    <div v-for="(message,index) in currentMessage" class="wrapper-message">
+                        <div @mouseover="isHovering = true, hoveredMessage = index" @mouseout="isHovering = false"  :class="{recivedMessage : message.status == 'received', sentMessage : message.status == 'sent'}">
                             <p>{{message.text}}</p>
+                            <span :class="[isHovering && hoveredMessage === index ? 'hovering' : '']" class="dropdown">
+                                <i @click="showOptions(index)" class="fas fa-chevron-down" ></i>
+                                <div :class="[isShow && selectedMessage === index ? 'show' : '']" class="options-message">
+                                    <span>Message info</span>
+                                    <span @click="deleteMessage(index)">Delete Message</span>
+                                </div>
+                            </span>
                             <p id="date-message">{{message.date}}</p>
                         </div>
                     </div>

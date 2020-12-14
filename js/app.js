@@ -76,12 +76,46 @@ const app = new Vue(
           messages: [
             {
               date: '10/01/2020 15:30:55',
-              text: 'Lo sai che ha aperto una nuova pizzeria?',
+              text: 'Shopping sfrenato?',
               status: 'sent'
             },
             {
               date: '10/01/2020 15:50:00',
-              text: 'Si, ma preferirei andare al cinema',
+              text: 'Mi piacerebbe , ma ho degli impegni',
+              status: 'received'
+            }
+          ],
+        },
+        {
+          name: 'Armando',
+          avatar: 'img/Avatars Set Flat Style-21.png',
+          visible: true,
+          messages: [
+            {
+              date: '10/01/2020 15:30:55',
+              text: 'Buon Natale',
+              status: 'sent'
+            },
+            {
+              date: '10/01/2020 15:50:00',
+              text: 'Grazie, anche a te',
+              status: 'received'
+            }
+          ],
+        },
+        {
+          name: 'Jack',
+          avatar: 'img/Avatars Set Flat Style-44.png',
+          visible: true,
+          messages: [
+            {
+              date: '10/01/2020 15:30:55',
+              text: 'Partitina online?',
+              status: 'sent'
+            },
+            {
+              date: '10/01/2020 15:50:00',
+              text: 'Si dai! Accendo la Playstation',
               status: 'received'
             }
           ],
@@ -91,9 +125,12 @@ const app = new Vue(
       currentContact: '',
       index: 0,
       selected : 0,
+      selectedMessage: 0,
+      hoveredMessage: 0,
       newMessage: '',
-      chat: ''
-
+      chat: '',
+      isShow: false,
+      isHovering: false,
     },
     computed: {
       filteredChat() {
@@ -113,7 +150,8 @@ const app = new Vue(
         this.currentContact = contact;
         this.currentMessage = contact.messages
         this.selected = index;
-      },sendMessage : function() {
+      },
+      sendMessage : function() {
 
         const date = new Date();
         const h = date.getHours();
@@ -137,7 +175,6 @@ const app = new Vue(
           'Ottima idea',
           'Purtroppo, non ci sono',
           'Buon Natale!',
-          'Sei speciale',
           'Ho da fare ,oggi! Andiamo un altro giorno',
           '...'
         ];
@@ -151,7 +188,19 @@ const app = new Vue(
             clearTimeout(this.autoMessage);
           }
         ,randomNumberReply)
-      }
+      },
+      deleteMessage : function(index) {
+        this.currentMessage.splice(index,1);
+      },
+      showOptions: function(index) {
+        this.selectedMessage = index;
+        !this.isShow ? this.isShow = true : this.isShow = false;
+      },
     }
   }
 );
+
+
+//[] problem to delete last chat message =>  'undefined'
+//[] se non chiudo l'option , resta aperto anche negli altri messaggi
+//[]

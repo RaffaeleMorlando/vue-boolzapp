@@ -274,9 +274,11 @@ img {
 }
 .wrapper-message p {
     padding: .5rem;
+    display: inline-block
 }
 
 .recivedMessage {
+    position: relative;
     float: left;
     max-width: 25rem;
     background-color: var(--white) ;
@@ -285,6 +287,7 @@ img {
     border-radius: 7.5px;
 }
 .sentMessage {
+    position: relative;
     float: right;
     max-width: 25rem;
     background-color: var(--greenMessage);
@@ -292,8 +295,38 @@ img {
     padding: 6px 7px 8px 9px;
     border-radius: 7.5px;
 }
-
+.dropdown {
+    display: none;
+    cursor: pointer;
+}
+.options-message {
+    display: none;
+    position: absolute;
+    right: 0;
+    width: 150px;
+    height: 80px;
+    text-align: center;
+    padding: 1px;
+    background-color: #fff;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    border-radius: 5px;
+    z-index: 1;
+    cursor: pointer;
+}
+.options-message > span {
+    display: block;
+    height: 30px;
+    margin-top: 10px;
+    padding: 5px;
+    cursor: pointer;
+}
+.options-message > span:hover {
+    background-color: rgba(230, 230, 230, 0.536);
+    cursor: pointer;
+    cursor: pointer;
+}
 #date-message {
+    display: block;
     font-size: 10px;
     font-weight: 400;
     right: 10px;
@@ -336,3 +369,11 @@ img {
 .active {
     background-color: lightgray;
 }
+
+.show {
+    display: block;
+}
+
+.hovering{
+    display: inline-block;
+  }

@@ -131,7 +131,8 @@ const app = new Vue(
       chat: '',
       isShow: false,
       isHovering: false,
-      newArrayContacts: []
+      newArrayContacts: [],
+      lastSeen: '',
     },
 
     updated() {
@@ -146,8 +147,6 @@ const app = new Vue(
              return  message.status == 'received';
             }
           );
-
-          console.log(riceivedMessage);
 
           return {username: item.name, lastSeen: riceivedMessage[riceivedMessage.length - 1].date};
         }
@@ -206,9 +205,7 @@ const app = new Vue(
             });
 
             //update last seen
-            const name = this.contacts[this.index].name;
-            const find = this.newArrayContacts.find((item) => item.username === name);
-            find.date = date;
+            this.lastSeen = date;
 
             clearTimeout(this.autoMessage);
           }
@@ -230,14 +227,24 @@ const app = new Vue(
       },
 
       getLastSeen: function(index) {
-        const name = this.contacts[index].name;
-        const find = this.newArrayContacts.find((item) => item.username === name);
-        return `Last seen: ${find.lastSeen}`;
+
+        if(this.lastSeen == 0) {
+          const name = this.contacts[index].name;
+          const find = this.newArrayContacts.find((item) => item.username === name);
+          return `Last seen: ${find.lastSeen}`;
+        } else {
+          return `Last seen: Today ${this.lastSeen}`;
+        }
       },
     }
   }
 );
 
 //--- TODO
-//[] add last seen
+//[x] add last seen
 //[] add string 'is typing' to contact bar info
+//[] fix last seen
+
+
+
+

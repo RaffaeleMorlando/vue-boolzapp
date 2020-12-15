@@ -82,7 +82,7 @@
                     <div class="contact-info">
                         <span>{{contacts[index].name}}</span>
                         <span v-if="contacts[index].messages.length > 0" >
-                            {{getLastSeen(index)}}
+                            Last seen: Today {{newArrayContacts[index].lastSeen}}
                         </span>
                     </div>
                 </div>

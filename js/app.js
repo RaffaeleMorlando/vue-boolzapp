@@ -139,18 +139,14 @@ const app = new Vue(
       this.$nextTick(() => this.scrollToEnd()); 
     },
 
-    created() {
-      this.newArrayContacts = this.contacts.map(
-        (item) => {
-          let riceivedMessage = item.messages.filter(
-            (message) => {
-             return  message.status == 'received';
+    created() {      
+      this.contacts.forEach(contact => {
+          this.newArrayContacts.push(
+            {
+              lastSeen: contact.messages[contact.messages.length - 1].date
             }
-          );
-
-          return {username: item.name, lastSeen: riceivedMessage[riceivedMessage.length - 1].date};
-        }
-      );
+          )
+      });
     },
 
     computed: {
@@ -205,7 +201,7 @@ const app = new Vue(
             });
 
             //update last seen
-            this.lastSeen = date;
+            this.newArrayContacts[this.index].lastSeen = date;
 
             clearTimeout(this.autoMessage);
           }
@@ -225,25 +221,12 @@ const app = new Vue(
         this.selectedMessage = index;
         !this.isShow ? this.isShow = true : this.isShow = false;
       },
-
-      getLastSeen: function(index) {
-
-        if(this.lastSeen == 0) {
-          const name = this.contacts[index].name;
-          const find = this.newArrayContacts.find((item) => item.username === name);
-          return `Last seen: ${find.lastSeen}`;
-        } else {
-          return `Last seen: Today ${this.lastSeen}`;
-        }
-      },
     }
   }
 );
 
 //--- TODO
-//[x] add last seen
 //[] add string 'is typing' to contact bar info
-//[] fix last seen
 
 
 

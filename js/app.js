@@ -132,6 +132,13 @@ const app = new Vue(
       isShow: false,
       isHovering: false,
     },
+
+    updated() {
+
+      this.$nextTick( () => this.scrollToEnd());
+
+    },
+
     computed: {
       filteredChat() {
         if(this.chat.length == 0) {
@@ -145,24 +152,17 @@ const app = new Vue(
       }
     },
     methods: {
+
       getCurrent: function(contact,index) {
         this.index = index
         this.currentContact = contact;
         this.currentMessage = contact.messages
         this.selected = index;
       },
+
       sendMessage : function() {
-
-        const date = new Date();
-        const h = date.getHours();
-        const m = date.getMinutes();
-        const s = date.getSeconds();
-
-        const currentTime = `${h}:${m}:${s}`;
-
-        this.currentContact.messages.push({date: currentTime,text: this.newMessage, status: 'sent'});
+        this.currentContact.messages.push({date: dayjs().format('DD/MM/YY HH:mm:ss'),text: this.newMessage, status: 'sent'});
         this.newMessage = '';
-
         const defaultMessages = [
           'Ok', 
           'Ciao', 
@@ -178,28 +178,38 @@ const app = new Vue(
           'Ho da fare ,oggi! Andiamo un altro giorno',
           '...'
         ];
-
         const randomNumber = Math.floor(Math.random() * defaultMessages.length);
         const randomNumberReply = Math.floor(Math.random() * 10000);
-
         const autoMessage = setTimeout(
           () => {
-            this.currentContact.messages.push({date: currentTime,text:defaultMessages[randomNumber],status : 'received'});
+            this.currentContact.messages.push({date: dayjs().format('DD/MM/YY HH:mm:ss'),text:defaultMessages[randomNumber],status : 'received'});
+            this.scrollToEnd();
             clearTimeout(this.autoMessage);
           }
         ,randomNumberReply)
+        this.scrollToEnd();
       },
+
+      scrollToEnd: function() {
+        this.$nextTick(function() {
+          const chatBox = this.$el.querySelector('#chat-background');
+          chatBox.scrollTop = chatBox.scrollHeight;
+        });
+      },
+
       deleteMessage : function(index) {
         this.currentMessage.splice(index,1);
       },
+
       showOptions: function(index) {
         this.selectedMessage = index;
         !this.isShow ? this.isShow = true : this.isShow = false;
-      },
+      }
     }
   }
 );
 
-
 //[] problema cancellare ultimo messsaggio
 //[] se non chiudo l'option , resta aperto anche negli altri messaggi
+
+// [x] add scroll to end when a new message is added in chat

@@ -63,10 +63,10 @@
                         </div>
                         <div class="contact-box-info">
                             <span>{{contact.name}}</span>
-                            <p>{{contact.messages[contact.messages.length - 1].text}}</p>
+                            <p v-if="contact.messages.length > 0">{{contact.messages[contact.messages.length - 1].text}}</p>
                         </div>
                         <div id="time-wrapper">
-                            <span>{{contact.messages[contact.messages.length - 1].date}}</span>
+                            <span v-if="contact.messages.length > 0">{{contact.messages[contact.messages.length - 1].date}}</span>
                         </div>
                     </li>
                 </ul>
@@ -102,7 +102,10 @@
             <div id="chat">
                 <div id="chat-background">
                     <div v-for="(message,index) in currentMessage" class="wrapper-message">
-                        <div @mouseenter="isHovering = true, hoveredMessage = index" @mouseleave="isHovering = false"  :class="{recivedMessage : message.status == 'received', sentMessage : message.status == 'sent'}">
+                        <div 
+                        @mouseenter="isHovering = true, hoveredMessage = index" 
+                        @mouseleave="isHovering = false"  
+                        :class="{recivedMessage : message.status == 'received', sentMessage : message.status == 'sent'}">
                             <p>{{message.text}}</p>
                             <span :class="[isHovering && hoveredMessage === index ? 'hovering' : '']" class="dropdown">
                                 <i @click="showOptions(index)" class="fas fa-chevron-down" ></i>
@@ -133,6 +136,7 @@
 
     </div>
 
+    <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
     <script src="js/app.js"></script>
 </body>
 </html>

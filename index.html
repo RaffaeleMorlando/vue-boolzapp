@@ -78,10 +78,13 @@
 
             <div  id="contact-message-bar">
                 <div class="wrapper-contact-avatar">
-                    <img :src="currentContact.avatar"  alt="">
+                    <img :src="contacts[index].avatar"  alt="">
                     <div class="contact-info">
-                        <span>{{currentContact.name}}</span>
-                        <span>Last seen {{contacts[index].messages[contacts[index].messages.length - 1].date}}</span>
+                        <span>{{contacts[index].name}}</span>
+                        <span v-if="contacts[index].messages.length > 0" >
+                            {{getLastSeen(index)}}
+                        </span>
+                        <!-- <span v-else-if="contacts[index].messages.length = 0">Last seen {{getLastSeen}}</span> -->
                     </div>
                 </div>
                 <div class="wrapper-contact-icons">

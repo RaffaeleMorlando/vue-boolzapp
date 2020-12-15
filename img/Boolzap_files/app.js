@@ -205,14 +205,16 @@ const app = new Vue(
               status : 'received'
             });
 
-            //update last seen
-            const name = this.contacts[this.index].name;
-            const find = this.newArrayContacts.find((item) => item.username === name);
-            find.date = date;
+            // const name = this.contacts[this.index].name;
+            // const find = this.newArrayContacts.find((item) => item.username === name);
+            // find.date = date;
+            this.getLastSeen();
 
+            this.scrollToEnd();
             clearTimeout(this.autoMessage);
           }
         ,randomNumberReply)
+        this.scrollToEnd();
       },
 
       scrollToEnd: function() {
@@ -240,4 +242,10 @@ const app = new Vue(
 
 //--- TODO
 //[] add last seen
+//[] se non chiudo l'option , resta aperto anche negli altri messaggi
 //[] add string 'is typing' to contact bar info
+
+
+//--- DONE
+//[x] add auto scroll to end when a new message is added in chat
+//[x] problema cancellare ultimo messsaggio
